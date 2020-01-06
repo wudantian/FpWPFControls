@@ -1,0 +1,178 @@
+﻿<UserControl x:Name="userControl" x:Class="MonthCalendar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfAppVb"
+             mc:Ignorable="d" 
+             d:DesignHeight="180" d:DesignWidth="200">
+    <UserControl.Resources>
+        <Style x:Key="dbutton" TargetType="Button">
+            <Style.Setters>
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="BorderBrush" Value="{x:Null}"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style.Setters>
+        </Style>
+        <!--<ControlTemplate x:Key="lockNumber" TargetType="ToggleButton">
+            <Grid Width="{Binding ActualWidth,RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}" 
+                    Height="{Binding ActualHeight,RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}">
+                <ContentPresenter Content="{TemplateBinding Content}" 
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              Margin="{TemplateBinding Padding}"/>
+                <Path Width="16" Height="16" Stretch="Fill" Fill="#FFFF5000" Data="{DynamicResource RTangle}" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+            </Grid>
+        </ControlTemplate>-->
+        <StreamGeometry x:Key="RTangle">F1M0,0L12,0 12,12</StreamGeometry>
+        <StreamGeometry x:Key="Direct">F1 M 7.53417,9.6271L 3.87042,6.50229L 3.87042,5.9915L 7.53417,2.52331L 7.53417,3.68438L 
+                                        4.81167,6.19968L 4.81167,6.23402L 7.53417,8.47247L 7.53417,9.6271 Z</StreamGeometry>
+        <StreamGeometry x:Key="Forbid">F1 M 4.31379,5.07138C 4.75643,4.59827 5.22747,4.15201 5.72419,3.73538C 8.50398,1.40393 12.088,
+                                        0 16,0C 24.8365,0 32,7.16345 32,16C 32,19.912 30.5961,23.496 28.2646,26.2758C 27.848,
+                                        26.7725 27.4017,27.2436 26.9286,27.6862C 24.0685,30.3619 20.2256,32 16,32C 7.16344,
+                                        32 2.55307e-006,24.8365 2.55307e-006,16C 2.55307e-006,11.7744 1.63805,7.93143 4.31379,
+                                        5.07138 Z M 25.7619,26.5196L 5.48043,6.23804C 3.10272,8.79907 1.64884,12.2298 1.64884,
+                                        16C 1.64884,23.9259 8.07406,30.3512 16,30.3512C 19.7702,30.3512 23.2009,28.8972 25.7619,
+                                        26.5196 Z M 6.89511,4.90637L 27.0936,25.1049C 29.1291,22.6276 30.3511,19.4565 30.3511,
+                                        16C 30.3511,8.0741 23.9259,1.6489 16,1.6489C 12.5435,1.6489 9.37236,2.87085 6.89511,4.90637 Z</StreamGeometry>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="{DynamicResource {x:Static SystemColors.MenuColorKey}}"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="lockToggle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <Grid Width="{Binding ActualWidth,RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}" 
+                                    Height="{Binding ActualHeight,RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}">
+                                <ContentPresenter x:Name="contentPresenter" Content="{TemplateBinding Content}" 
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  Margin="{TemplateBinding Padding}"/>
+                                <Path x:Name="redCorner" Width="{Binding FontSize,RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}" 
+                                                         Height="{Binding FontSize,RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}" 
+                                                         Stretch="Fill" Fill="#FFFF5000" Visibility="Hidden"
+                                      Data="{DynamicResource Forbid}" RenderTransformOrigin="0.5,0.5" >
+                                    <Path.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Path.RenderTransform>
+                                </Path>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                                <Setter Property="Visibility" TargetName="redCorner" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <EventSetter Event="Checked" Handler="LockMonthChanged"/>
+            <EventSetter Event="Unchecked" Handler="LockMonthChanged"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Button Style="{DynamicResource dbutton}" Click="MinusYear">
+                <Button.Content>
+                    <Path Stretch="Fill" Fill="#FF000000" Data="{DynamicResource Direct}" Width="10" Height="16"/>
+                </Button.Content>
+            </Button>
+            <Label Grid.Column="1" Content="{Binding Year, ElementName=userControl}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" FontSize="20"/>
+            <!--<Button Grid.Column="2" Content="&gt;" FontSize="20" Style="{DynamicResource dbutton}" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+            <Button Grid.Column="2" Style="{DynamicResource dbutton}" Click="AddYear">
+                <Button.Content>
+                    <Path Stretch="Fill" Fill="#FF000000" Data="{DynamicResource Direct}" Width="10" Height="16" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                                <SkewTransform AngleY="0" AngleX="0"/>
+                                <RotateTransform Angle="0"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                </Button.Content>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ToggleButton FontSize="20" Content="1" Style="{DynamicResource lockToggle}" IsChecked="{Binding LockMonths[0], ElementName=userControl}"/>
+            <ToggleButton FontSize="20" Grid.Column="1" Content="2" Style="{DynamicResource lockToggle}"  IsChecked="{Binding LockMonths[1], ElementName=userControl}"/>
+            <ToggleButton Content="3" FontSize="20" Grid.Column="2" Style="{DynamicResource lockToggle}"  IsChecked="{Binding LockMonths[2], ElementName=userControl}"/>
+            <ToggleButton Content="4" FontSize="20" Grid.Column="3" Style="{DynamicResource lockToggle}"  IsChecked="{Binding LockMonths[3], ElementName=userControl}"/>
+            <ToggleButton Content="5" FontSize="20" Grid.Row="1" Style="{DynamicResource lockToggle}"  IsChecked="{Binding LockMonths[4], ElementName=userControl}"/>
+            <ToggleButton Content="6" FontSize="20" Grid.Column="1" Grid.Row="1" Style="{DynamicResource lockToggle}"  IsChecked="{Binding LockMonths[5], ElementName=userControl}"/>
+            <ToggleButton Content="7" FontSize="20" Grid.Column="2" Grid.Row="1" Style="{DynamicResource lockToggle}"  IsChecked="{Binding LockMonths[6], ElementName=userControl}"/>
+            <ToggleButton Content="8" FontSize="20" Grid.Column="3" Grid.Row="1" Style="{DynamicResource lockToggle}"  IsChecked="{Binding LockMonths[7], ElementName=userControl}"/>
+            <ToggleButton Content="9" FontSize="20" Grid.Row="2" Style="{DynamicResource lockToggle}"  IsChecked="{Binding LockMonths[8], ElementName=userControl}"/>
+            <ToggleButton Content="10" FontSize="20" Grid.Column="1" Grid.Row="2" Style="{DynamicResource lockToggle}" IsChecked="{Binding LockMonths[9], ElementName=userControl}"/>
+            <ToggleButton Content="11" FontSize="20" Grid.Column="2" Grid.Row="2" Style="{DynamicResource lockToggle}" IsChecked="{Binding LockMonths[10], ElementName=userControl}"/>
+            <ToggleButton Content="12" FontSize="20" Grid.Column="3" Grid.Row="2" Style="{DynamicResource lockToggle}" IsChecked="{Binding LockMonths[11], ElementName=userControl}"/>
+        </Grid>
+    </Grid>
+</UserControl>
