@@ -3,6 +3,11 @@
 Public Class TagNote
     Implements INotifyPropertyChanged
 
+    Public Delegate Sub CloseTagDelegate()
+
+
+    Public Property OnCloseTag As CloseTagDelegate
+
     Private _note As String
     Public Property Note As String
         '格式为text:backgroudcolor,textcolor
@@ -51,6 +56,17 @@ Public Class TagNote
         End Set
     End Property
 
+    Private _isActive As Boolean = False
+    Public Property IsActive As Boolean
+        Get
+            Return _isActive
+        End Get
+        Set(value As Boolean)
+            _isActive = value
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("IsActive"))
+        End Set
+    End Property
+
     Private Function ToNote() As String
         Return $"{Me.Text.Trim}:{Me.BackGroudColor.ToString},{Me.TextColor.ToString}"
     End Function
@@ -69,4 +85,12 @@ Public Class TagNote
     End Sub
 
     Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
+
+    Private Sub ChangeActive(sender As Object, e As MouseButtonEventArgs)
+        Me.IsActive = Not Me.IsActive
+    End Sub
+
+    Private Sub CloseTag(sender As Object, e As RoutedEventArgs)
+
+    End Sub
 End Class

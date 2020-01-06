@@ -6,8 +6,8 @@
     <ProjectGuid>{5E04DCAE-EFDA-40DD-B496-107FD7165D08}</ProjectGuid>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WpfAppVb</RootNamespace>
-    <AssemblyName>WpfAppVb</AssemblyName>
+    <RootNamespace>FpWPFControls</RootNamespace>
+    <AssemblyName>FpWPFControls</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MyType>Custom</MyType>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -21,7 +21,7 @@
     <DefineTrace>true</DefineTrace>
     <IncrementalBuild>true</IncrementalBuild>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>WpfAppVb.xml</DocumentationFile>
+    <DocumentationFile>FpWPFControls.xml</DocumentationFile>
     <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -33,7 +33,7 @@
     <IncrementalBuild>false</IncrementalBuild>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>WpfAppVb.xml</DocumentationFile>
+    <DocumentationFile>FpWPFControls.xml</DocumentationFile>
     <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036,42314</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -68,9 +68,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="..\..\..\MySoftwareProject\APSS2X\Client\APSS2XClient\View\Converter\clsObjectToVisibilityConverter.vb">
-      <Link>clsObjectToVisibilityConverter.vb</Link>
-    </Compile>
     <Compile Include="clsBooleanToVisibilityConverter.vb" />
     <Compile Include="ComboWithFoot\clsComboBoxWithFoot2.vb" />
     <Compile Include="FindBox\FindBox.xaml.vb">

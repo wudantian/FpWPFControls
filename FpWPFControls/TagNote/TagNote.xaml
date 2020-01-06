@@ -3,19 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WpfAppVb"
+             xmlns:local="clr-namespace:FpWPFControls"
              mc:Ignorable="d" 
-             d:DesignHeight="20" d:DesignWidth="100">
+             d:DesignHeight="20" d:DesignWidth="100" MouseDoubleClick="ChangeActive">
+    <UserControl.Resources>
+        <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Border x:Name="bd" BorderThickness="1" BorderBrush="#FFCFBFBF" CornerRadius="8" HorizontalAlignment="Center" Padding="5,0">
             <Border.Background>
                 <SolidColorBrush Color= "{Binding BackGroudColor, ElementName=userControl}"/>
             </Border.Background>
-            <TextBlock x:Name="_tag" Text="{Binding Text, ElementName=userControl}" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock.Foreground>
-                    <SolidColorBrush Color="{Binding TextColor, ElementName=userControl}"/>
-                </TextBlock.Foreground>
-            </TextBlock>
+            <WrapPanel>
+                <TextBlock x:Name="_tag" Text="{Binding Text, ElementName=userControl}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="{Binding TextColor, ElementName=userControl}"/>
+                    </TextBlock.Foreground>
+                </TextBlock>
+                <Button Background="{x:Null}" BorderBrush="{x:Null}" Click="CloseTag">
+                    <Path Data="M0,0 L3,3 m0,-3 L0,3" Fill="#FFF4F4F5" Height="8" Stretch="Fill" Stroke="Black" Width="8" Visibility="{Binding IsActive, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=userControl}"/>
+                </Button>
+            </WrapPanel>
         </Border>
     </Grid>
 </UserControl>

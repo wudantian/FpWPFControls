@@ -1,8 +1,8 @@
 ﻿<Application x:Class="Application"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:WpfAppVb"
-    StartupUri="Window8.xaml">
+    xmlns:local="clr-namespace:FpWPFControls"
+    StartupUri="Window7.xaml">
     <Application.Resources>
     </Application.Resources>
 </Application>
