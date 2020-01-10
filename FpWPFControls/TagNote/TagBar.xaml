@@ -5,11 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FpWPFControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Focusable="True" IsTabStop="True"
+             MouseDown="UserControl_MouseDown"
+              LostFocus="UserControl_LostFocus">
     <ItemsControl ItemsSource="{Binding Tags, ElementName=userControl}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-                <WrapPanel x:Name="_bar" />
+                <WrapPanel x:Name="_bar"/>
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
     </ItemsControl>

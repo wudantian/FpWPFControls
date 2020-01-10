@@ -1,6 +1,5 @@
 ﻿Imports System.Collections.ObjectModel
 Imports System.ComponentModel
-Imports WpfAppVb
 
 Class MainWindow
     Implements INotifyPropertyChanged

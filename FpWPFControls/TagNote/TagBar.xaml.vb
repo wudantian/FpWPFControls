@@ -7,7 +7,7 @@ Public Class TagBar
     Private _tagsNote As String
     Public Property TagsNote As String
         Get
-            Return _tagsNote
+            Return ToTagsString()
         End Get
         Set(value As String)
             _tagsNote = value
@@ -24,12 +24,35 @@ Public Class TagBar
         If tmps IsNot Nothing AndAlso tmps.Count > 0 Then
             For Each n In tmps
                 If n.Trim.Length > 0 Then
-                    Dim tag As New TagNote With {.Note = n}
+                    Dim tag As New TagNote With
+                        {.Note = n,
+                        .OnCloseTag = AddressOf DeleteTag
+                        }
                     Tags.Add(tag)
                 End If
             Next
         End If
     End Sub
 
+    Private Sub DeleteTag(tag As TagNote)
+        Tags.Remove(tag)
+    End Sub
 
+    Private Function ToTagsString() As String
+        Dim tagStr As New Text.StringBuilder
+        For Each t In Tags
+            tagStr.Append(t.Note)
+        Next
+        Return tagStr.ToString
+    End Function
+
+    Private Sub UserControl_LostFocus(sender As Object, e As RoutedEventArgs)
+        For Each t In Tags
+            If t.IsActive Then t.IsActive = False
+        Next
+    End Sub
+
+    Private Sub UserControl_MouseDown(sender As Object, e As MouseButtonEventArgs)
+        Me.Focus()
+    End Sub
 End Class

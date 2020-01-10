@@ -3,7 +3,7 @@
 Public Class TagNote
     Implements INotifyPropertyChanged
 
-    Public Delegate Sub CloseTagDelegate()
+    Public Delegate Sub CloseTagDelegate(tag As TagNote)
 
 
     Public Property OnCloseTag As CloseTagDelegate
@@ -91,6 +91,8 @@ Public Class TagNote
     End Sub
 
     Private Sub CloseTag(sender As Object, e As RoutedEventArgs)
-
+        If OnCloseTag IsNot Nothing Then
+            OnCloseTag.Invoke(Me)
+        End If
     End Sub
 End Class
