@@ -69,6 +69,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="clsBooleanToVisibilityConverter.vb" />
+    <Compile Include="clsStudent.vb" />
     <Compile Include="ComboWithFoot\clsComboBoxWithFoot2.vb" />
     <Compile Include="FindBox\FindBox.xaml.vb">
       <DependentUpon>FindBox.xaml</DependentUpon>
@@ -84,6 +85,12 @@
     </Compile>
     <Compile Include="TagNote\TagNote.xaml.vb">
       <DependentUpon>TagNote.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TagNote\TagTextBlock.xaml.vb">
+      <DependentUpon>TagTextBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TagNote\TagTextBox.xaml.vb">
+      <DependentUpon>TagTextBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="VCalvScreen\VCalvScreen.xaml.vb">
       <DependentUpon>VCalvScreen.xaml</DependentUpon>
@@ -141,6 +148,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TagNote\TagNote.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TagNote\TagTextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TagNote\TagTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

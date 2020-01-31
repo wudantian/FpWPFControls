@@ -1,5 +1,43 @@
-﻿Public Class Window7
-    Private Sub AddTags(sender As Object, e As RoutedEventArgs)
-        tagBar.TagsNote = "{sample:#FF0078D7,#FF000000}{5%:#FF0078D7,#FFFFFF}{代运:#FF5EBB4A,#FFFFFF}"
+﻿Imports System.Collections.ObjectModel
+
+Public Class Window7
+
+    Public Property Students As New ObservableCollection(Of Student)
+
+    Private Sub Initialdata()
+        Students.Add(New Student With {
+            .Name = "wang",
+            .Sex = "male",
+            .Note = "good {good}{better}student"
+        })
+        Students.Add(New Student With {
+            .Name = "li xiang",
+            .Sex = "femal",
+            .Note = "normal student"
+        })
+        Students.Add(New Student With {
+            .Name = "zhang qi",
+            .Sex = "male",
+            .Note = "bad student"
+        })
+
+    End Sub
+
+    Private Sub Window7_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
+        Initialdata()
+    End Sub
+
+    Private Sub Filter(sender As Object, e As RoutedEventArgs)
+        If dgdMain.SelectedCells.Count > 0 Then
+            Dim cell As DataGridCellInfo = dgdMain.SelectedCells.First
+            If cell.Column.SortMemberPath = "Note" Then
+                Dim content = cell.Column.GetCellContent(cell.Item)
+                Dim child = VisualTreeHelper.GetChild(content, 0)
+                If TypeOf (child) Is TagTextBlock Then
+                    Dim key As String = CType(child, TagTextBlock).ActiveTag.Text
+                    Debug.Print(key)
+                End If
+            End If
+        End If
     End Sub
 End Class

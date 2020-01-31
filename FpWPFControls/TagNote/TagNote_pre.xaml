@@ -5,15 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FpWPFControls"
              mc:Ignorable="d" 
-             d:DesignHeight="20" d:DesignWidth="100" MouseDoubleClick="ChangeEditCondition" MouseDown="OnFocus"
-             Focusable="True" GotFocus="OnFocus" IsTabStop="True" LostFocus="OnLost">
+             d:DesignHeight="20" d:DesignWidth="100" MouseDoubleClick="ChangeActive">
     <UserControl.Resources>
         <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
     <Grid>
-        <Border x:Name="bd" BorderThickness="1" BorderBrush="{Binding BorderColor, ElementName=userControl}" CornerRadius="8" HorizontalAlignment="Center" Padding="5,0">
+        <Border x:Name="bd" BorderThickness="1" BorderBrush="#FFCFBFBF" CornerRadius="8" HorizontalAlignment="Center" Padding="5,0">
             <Border.Background>
-                <SolidColorBrush Color= "{Binding BackGroundColor, ElementName=userControl}"/>
+                <SolidColorBrush Color= "{Binding BackGroudColor, ElementName=userControl}"/>
             </Border.Background>
             <WrapPanel>
                 <TextBlock x:Name="_tag" Text="{Binding Text, ElementName=userControl}" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -22,7 +21,7 @@
                     </TextBlock.Foreground>
                 </TextBlock>
                 <Button Background="{x:Null}" BorderBrush="{x:Null}" Click="CloseTag" Focusable="False">
-                    <Path Data="M0,0 L3,3 m0,-3 L0,3" Fill="#FFF4F4F5" Height="8" Stretch="Fill" Stroke="Black" Width="8" Visibility="{Binding IsEdit, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=userControl}"/>
+                    <Path Data="M0,0 L3,3 m0,-3 L0,3" Fill="#FFF4F4F5" Height="8" Stretch="Fill" Stroke="Black" Width="8" Visibility="{Binding IsActive, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=userControl}"/>
                 </Button>
             </WrapPanel>
         </Border>

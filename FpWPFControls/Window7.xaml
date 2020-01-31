@@ -1,4 +1,4 @@
-﻿<Window x:Class="Window7"
+﻿<Window x:Name="window" x:Class="Window7"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,18 +7,30 @@
         mc:Ignorable="d"
         Title="Window7" Height="450" Width="800">
     <Grid>
-        <StackPanel Orientation="Horizontal" Margin="103,105,364,254">
-            <local:TagBar x:Name="tagBar" HorizontalAlignment="Left" VerticalAlignment="Stretch">
-            </local:TagBar>
-        </StackPanel>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="466,81,0,0" VerticalAlignment="Top" Width="75" Click="AddTags"/>
-        <Rectangle Fill="#FF5EBB4A" HorizontalAlignment="Left" Height="100" Margin="598,165,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="428,265,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="216,284,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Menu HorizontalAlignment="Left" Height="22" Margin="572,10,0,0" VerticalAlignment="Top" Width="100">
-            <MenuItem Header="Test">
-                <MenuItem Header="Test"/>
-            </MenuItem>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="Test" Click="Filter"/>
         </Menu>
+        <DataGrid x:Name="dgdMain" Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding Students, ElementName=window}" Margin="0,0,0.333,-0.333" Grid.RowSpan="2" SelectionUnit="CellOrRowHeader">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Sex" Binding="{Binding Sex}"/>
+                <DataGridTemplateColumn Header="Note" MinWidth="200" SortMemberPath="Note">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <local:TagTextBlock Text="{Binding Note, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <local:TagTextBox IsReadOnly="True" Text="{Binding Note, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

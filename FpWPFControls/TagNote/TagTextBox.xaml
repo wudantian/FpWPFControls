@@ -1,0 +1,29 @@
+﻿<UserControl x:Name="userControl" x:Class="TagTextBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FpWPFControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="25" d:DesignWidth="60">
+    <UserControl.Resources>
+        <Style x:Key="txtBox" TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="IsReadOnlyCaretVisible" Value="True"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsReadOnly, ElementName=userControl}" Value="True">
+                    <Setter Property="IsReadOnly" Value="True"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <DockPanel>
+            <local:TagBar x:Name="_bar" DockPanel.Dock="Left" TagsNote="{Binding TagsString, ElementName=userControl}"
+                          HaveDeletedTags="TagsChanged"
+                          />
+        <TextBox x:Name="_txt" DockPanel.Dock="Right" 
+                 Text="{Binding NoteString, ElementName=userControl, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" 
+                 Style="{DynamicResource txtBox}">
+        </TextBox>
+    </DockPanel>
+</UserControl>
