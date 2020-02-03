@@ -35,6 +35,7 @@ Public Class TagBar
 
     Public Property Tags As New ObservableCollection(Of TagNote)
 
+    Private _tag As TagNote
     Public ReadOnly Property ActiveTag As TagNote
         Get
             If Tags.Count > 0 Then
@@ -46,6 +47,8 @@ Public Class TagBar
     End Property
 
     Public Property IsReadonly As Boolean = False
+
+    Public Property IsKeepFocus As Boolean = False
 
     Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
 
@@ -78,6 +81,10 @@ Public Class TagBar
     End Sub
 
     Private Sub FocusTag(tag As TagNote)
+        If _tag IsNot Nothing AndAlso _tag IsNot tag Then
+            _tag.IsActive = False
+        End If
+        _tag = tag
         RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("ActiveTag"))
     End Sub
 
@@ -88,4 +95,10 @@ Public Class TagBar
         Next
         Return tagStr.ToString
     End Function
+
+    Private Sub LostTagsFocus(sender As Object, e As RoutedEventArgs)
+        If IsKeepFocus AndAlso Me.ActiveTag Is Nothing Then
+            _tag.IsActive = True
+        End If
+    End Sub
 End Class

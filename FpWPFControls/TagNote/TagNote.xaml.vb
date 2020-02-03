@@ -89,18 +89,8 @@ Public Class TagNote
                     _backColor = ColorConverter.ConvertFromString("#FF7AC8F4")
             End Select
             RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("BackGroundColor"))
-            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("TextColor"))
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("ColorIndex"))
         End Set
-    End Property
-
-    Public ReadOnly Property BorderColor As SolidColorBrush
-        Get
-            If IsActive Then
-                Return SystemColors.HotTrackBrush
-            Else
-                Return SystemColors.InactiveBorderBrush
-            End If
-        End Get
     End Property
 
     Public Property IsReadOnly As Boolean = False
@@ -114,7 +104,6 @@ Public Class TagNote
         Set(value As Boolean)
             _isActive = value
             RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("IsActive"))
-            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("BorderColor"))
         End Set
     End Property
 
@@ -170,19 +159,15 @@ Public Class TagNote
     End Sub
 
     Private Sub OnFocus(sender As Object, e As RoutedEventArgs)
-        If Not Me.IsActive Then
-            Me.IsActive = True
-        End If
+        Me.IsActive = True
         If OnFocusTag IsNot Nothing Then
             OnFocusTag.Invoke(Me)
         End If
     End Sub
 
     Private Sub OnFocus(sender As Object, e As MouseButtonEventArgs)
-        If Not Me.IsActive Then
-            Me.IsActive = True
-            Me.Focus()
-        End If
+        Me.IsActive = True
+        Me.Focus()
     End Sub
 
     Private Sub OnLost(sender As Object, e As RoutedEventArgs)

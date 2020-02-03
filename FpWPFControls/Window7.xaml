@@ -9,12 +9,39 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Menu>
             <MenuItem Header="Test" Click="Filter"/>
         </Menu>
-        <DataGrid x:Name="dgdMain" Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding Students, ElementName=window}" Margin="0,0,0.333,-0.333" Grid.RowSpan="2" SelectionUnit="CellOrRowHeader">
+        <ToolBar Grid.Row="1">
+            <Button x:Name="button" Click="LoadTags" Content="Tags">
+            </Button>
+            <Popup x:Name="myPopup" AllowsTransparency="True" PopupAnimation="Fade" StaysOpen="False"
+                   PlacementTarget="{Binding ElementName=button, Mode=OneWay}" VerticalOffset="18" Placement="Left"
+                   >
+                <Border Margin="0,0,8,8">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="5" Opacity="0.4"/>
+                    </Border.Effect>
+                    <StackPanel Orientation="Vertical" Margin="2"
+                                    Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+                        <TextBlock Text="Select" Margin="4,4,0,2"/>
+                        <Border Padding="4" Margin="4" BorderThickness="1"
+                                    BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" >
+                            <local:TagBar x:Name="_tagList" Width="200" MinHeight="100" IsReadonly="True" IsKeepFocus="True"/>
+                        </Border>
+                        <MenuItem Header="New..."/>
+                        <MenuItem Header="Delete"/>
+                        <Separator/>
+                        <MenuItem Header="Stick"/>
+                        <MenuItem Header="Remove"/>
+                    </StackPanel>
+                </Border>
+            </Popup>
+        </ToolBar>
+        <DataGrid x:Name="dgdMain" Grid.Row="2" AutoGenerateColumns="False" ItemsSource="{Binding Students, ElementName=window}" Margin="0,0,0.333,-0.333" Grid.RowSpan="2" SelectionUnit="CellOrRowHeader">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Sex" Binding="{Binding Sex}"/>

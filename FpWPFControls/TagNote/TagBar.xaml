@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:FpWPFControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Focusable="True" IsTabStop="True"
+             LostFocus="LostTagsFocus"
              >
     <ItemsControl ItemsSource="{Binding Tags, ElementName=userControl}">
     <ItemsControl.ItemsPanel>

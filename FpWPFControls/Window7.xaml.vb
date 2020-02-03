@@ -40,4 +40,17 @@ Public Class Window7
             End If
         End If
     End Sub
+
+    Private Sub LoadTags(sender As Object, e As RoutedEventArgs)
+        If Not myPopup.IsOpen Then
+            _tagList.AddTags("{test}{简单,9}{没有结算,4}")
+            myPopup.IsOpen = True
+        End If
+    End Sub
+
+    Private Sub ClosePopup(sender As Object, e As DependencyPropertyChangedEventArgs)
+        If Not myPopup.IsFocused Then
+            myPopup.IsOpen = False
+        End If
+    End Sub
 End Class

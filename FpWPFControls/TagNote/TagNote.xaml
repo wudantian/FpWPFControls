@@ -9,9 +9,22 @@
              Focusable="True" GotFocus="OnFocus" IsTabStop="True" LostFocus="OnLost">
     <UserControl.Resources>
         <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <Style x:Key="myBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.InactiveBorderBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5,0"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsActive, ElementName=userControl}" Value="True">
+                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"/>
+                    <Setter Property="CornerRadius" Value="4"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <Grid>
-        <Border x:Name="bd" BorderThickness="1" BorderBrush="{Binding BorderColor, ElementName=userControl}" CornerRadius="8" HorizontalAlignment="Center" Padding="5,0">
+        <Border x:Name="bd" Style="{DynamicResource myBorder}">
             <Border.Background>
                 <SolidColorBrush Color= "{Binding BackGroundColor, ElementName=userControl}"/>
             </Border.Background>
