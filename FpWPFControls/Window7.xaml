@@ -32,7 +32,7 @@
                                     BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" >
                             <local:TagBar x:Name="_tagList" Width="200" MinHeight="100" IsReadonly="True" IsKeepFocus="True"/>
                         </Border>
-                        <MenuItem Header="New..."/>
+                        <MenuItem Header="New..." Click="ShowNewTagDialog"/>
                         <MenuItem Header="Delete"/>
                         <Separator/>
                         <MenuItem Header="Stick"/>

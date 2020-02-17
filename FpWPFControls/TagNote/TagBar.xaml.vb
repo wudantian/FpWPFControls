@@ -61,7 +61,8 @@ Public Class TagBar
                         {.Note = n,
                         .OnCloseTag = AddressOf DeleteTag,
                         .OnFocusTag = AddressOf FocusTag,
-                        .IsReadOnly = Me.IsReadonly
+                        .IsReadOnly = Me.IsReadonly,
+                        .Margin = New Thickness(1)
                         }
                     Tags.Add(tag)
                 End If

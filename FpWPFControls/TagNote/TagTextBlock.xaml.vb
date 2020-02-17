@@ -68,9 +68,9 @@ Public Class TagTextBlock
                 End If
             Loop
         End If
+        _bar.ClearTags()
         If tagStrBuilder.Length > 0 Then
             Me.NoteString = str
-            _bar.ClearTags()
             _bar.AddTags(tagStrBuilder.ToString)
         Else
             Me.NoteString = str

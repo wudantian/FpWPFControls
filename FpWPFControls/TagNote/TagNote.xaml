@@ -18,7 +18,7 @@
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsActive, ElementName=userControl}" Value="True">
                     <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"/>
-                    <Setter Property="CornerRadius" Value="4"/>
+                    <Setter Property="CornerRadius" Value="8,0,8,8"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>

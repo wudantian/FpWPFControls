@@ -71,11 +71,15 @@
     <Compile Include="clsBooleanToVisibilityConverter.vb" />
     <Compile Include="clsStudent.vb" />
     <Compile Include="ComboWithFoot\clsComboBoxWithFoot2.vb" />
+    <Compile Include="ExpandButton\ExpandButton.vb" />
     <Compile Include="FindBox\FindBox.xaml.vb">
       <DependentUpon>FindBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="MonthCalendar\MonthCalendar.xaml.vb">
       <DependentUpon>MonthCalendar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TagNote\frmNewTag.xaml.vb">
+      <DependentUpon>frmNewTag.xaml</DependentUpon>
     </Compile>
     <Compile Include="TagNote\TagBar.xaml.vb">
       <DependentUpon>TagBar.xaml</DependentUpon>
@@ -136,6 +140,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MonthCalendar\MonthCalendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TagNote\frmNewTag.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

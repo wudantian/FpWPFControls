@@ -53,4 +53,9 @@ Public Class Window7
             myPopup.IsOpen = False
         End If
     End Sub
+
+    Private Sub ShowNewTagDialog(sender As Object, e As RoutedEventArgs)
+        Dim fm As New frmNewTag
+        fm.ShowDialog()
+    End Sub
 End Class
