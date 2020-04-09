@@ -13,7 +13,7 @@ Public Class Student
         End Get
         Set
             _Name = Value
-            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("Name"))
+            OnPopertyChanged("Name")
         End Set
     End Property
 
@@ -23,7 +23,7 @@ Public Class Student
         End Get
         Set
             _Sex = Value
-            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("Sex"))
+            OnPopertyChanged("Sex")
         End Set
     End Property
 
@@ -33,9 +33,15 @@ Public Class Student
         End Get
         Set
             _Note = Value
-            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("Note"))
+            OnPopertyChanged("Note")
         End Set
     End Property
 
     Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
+    Public Sub OnPopertyChanged(propertyName As String)
+        RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+    End Sub
+    Public Overrides Function ToString() As String
+        Return Me.Name
+    End Function
 End Class

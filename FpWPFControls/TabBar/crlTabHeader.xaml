@@ -1,0 +1,34 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FpWPFControls" x:Class="crlTabHeader" x:Name="userControl" 
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="100"
+            MouseEnter="ShowClose" MouseLeave="HideClose"
+    >
+    <UserControl.Resources>
+        <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    <UserControl.Background>
+        <SolidColorBrush Color="White" Opacity="0.01"/>
+    </UserControl.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock MaxWidth="200" TextTrimming="WordEllipsis" TextWrapping="NoWrap" VerticalAlignment="Center"  Text="{Binding Header, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ElementName=userControl}" Grid.Column="0" Margin="0,0,2,0"/>
+        <Button Grid.Column="1" VerticalAlignment="Center" 
+                HorizontalAlignment="Center" 
+                Width="15" Height="15" BorderThickness="0"
+                Click="Button_Click" Margin="0" BorderBrush="{x:Null}"
+                Visibility="{Binding IsShowClose,ElementName=userControl, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
+            <Button.Background>
+                <SolidColorBrush Color="White" Opacity="0.01"/>
+            </Button.Background>
+            <Path Data="M0,0 L3,3 m0,-3 L0,3" Fill="#FFF4F4F5" Height="8" Stretch="Fill" Stroke="Black" Width="8"/>
+        </Button>
+    </Grid>
+</UserControl>

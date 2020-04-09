@@ -69,14 +69,26 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="clsBooleanToVisibilityConverter.vb" />
+    <Compile Include="clsDictionaryToVisibilityConverter.vb" />
+    <Compile Include="clsObjectToVisibilityConverter.vb" />
     <Compile Include="clsStudent.vb" />
     <Compile Include="ComboWithFoot\clsComboBoxWithFoot2.vb" />
+    <Compile Include="Comment.vb" />
+    <Compile Include="CommentCorner\clsCommentCorner.vb" />
     <Compile Include="ExpandButton\ExpandButton.vb" />
     <Compile Include="FindBox\FindBox.xaml.vb">
       <DependentUpon>FindBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="MonthCalendar\MonthCalendar.xaml.vb">
       <DependentUpon>MonthCalendar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObservableDictionary.vb" />
+    <Compile Include="StudentWithComment.vb" />
+    <Compile Include="TabBar\TabBar.xaml.vb">
+      <DependentUpon>TabBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabBar\crlTabHeader.xaml.vb">
+      <DependentUpon>crlTabHeader.xaml</DependentUpon>
     </Compile>
     <Compile Include="TagNote\frmNewTag.xaml.vb">
       <DependentUpon>frmNewTag.xaml</DependentUpon>
@@ -102,6 +114,15 @@
     <Compile Include="Window1.xaml.vb">
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Window10.xaml.vb">
+      <DependentUpon>Window10.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window11.xaml.vb">
+      <DependentUpon>Window11.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window12.xaml.vb">
+      <DependentUpon>Window12.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Window2.xaml.vb">
       <DependentUpon>Window2.xaml</DependentUpon>
     </Compile>
@@ -123,6 +144,9 @@
     <Compile Include="Window8.xaml.vb">
       <DependentUpon>Window8.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Window9.xaml.vb">
+      <DependentUpon>Window9.xaml</DependentUpon>
+    </Compile>
     <Page Include="FindBox\FindBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +166,14 @@
     <Page Include="MonthCalendar\MonthCalendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabBar\TabBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TabBar\crlTabHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="TagNote\frmNewTag.xaml">
       <SubType>Designer</SubType>
@@ -175,6 +207,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Window10.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window11.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window12.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Window2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -200,6 +244,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Window8.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window9.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
