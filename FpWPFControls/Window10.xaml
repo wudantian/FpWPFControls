@@ -10,7 +10,13 @@
         <local:DictionaryToVisibilityConverter x:Key="DictionaryToVisibilityConverter"/>
         <local:ObjectToVisibilityConverter x:Key="ObjectToVisibilityConverter"/>
         <Style x:Key="corner" TargetType="local:CommentCorner">
+            <Setter Property="Width" Value="8"/>
+            <Setter Property="Height" Value="8"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Fill" Value="Red"/>
             <Setter Property="Visibility" Value="Visible"/>
+            <EventSetter Event="MouseDoubleClick" Handler="ShowComment"/>
             <Style.Triggers>
                 <Trigger Property="ToolTip" Value="{x:Null}">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -22,7 +28,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Popup x:Name="popComment" PopupAnimation="Scroll" DataContext="{Binding}" 
+        <Popup x:Name="popComment" PopupAnimation="Scroll" DataContext="{Binding}"
                Placement="Left" StaysOpen="False" Width="200" Height="100" AllowsTransparency="True">
             <TextBox Text="{Binding Text}" AcceptsReturn="True" TextWrapping="Wrap" Margin="0,0,10,10">
                 <TextBox.Effect>
@@ -38,10 +44,7 @@
                         <DataTemplate>
                             <Grid>
                                 <TextBlock Text="{Binding Name}"/>
-                                <local:CommentCorner Width="6" Height="6" HorizontalAlignment="Right" 
-                                                     VerticalAlignment="Top" Fill="Red"
-                                                     ToolTip="{Binding Path=Comments[name]}" 
-                                                     Style="{StaticResource corner}"/>
+                                <local:CommentCorner ToolTip="{Binding Path=Comments[name]}" Style="{DynamicResource corner}"/>
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -51,10 +54,7 @@
                         <DataTemplate>
                             <Grid>
                                 <TextBlock Text="{Binding Sex}"/>
-                                <local:CommentCorner Width="6" Height="6" HorizontalAlignment="Right" 
-                                                     VerticalAlignment="Top" Fill="Red"
-                                                     ToolTip="{Binding Path=Comments[sex]}" Style="{DynamicResource corner}" 
-                                                     />
+                                <local:CommentCorner ToolTip="{Binding Path=Comments[sex]}" Style="{DynamicResource corner}"/>
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

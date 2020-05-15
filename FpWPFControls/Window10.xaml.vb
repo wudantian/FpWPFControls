@@ -43,4 +43,25 @@ Public Class Window10
             End If
         End If
     End Sub
+
+    Private Sub ShowComment(sender As Object, e As MouseButtonEventArgs)
+        AddComment(sender, Nothing)
+    End Sub
+
+    Private Sub ShowComment(sender As Object, e As RoutedEventArgs)
+        Dim corner = CType(sender, CommentCorner)
+        Dim grd = CType(corner.Parent, Grid)
+        Dim stu = CType(grd.DataContext, StudentWithComment)
+        If corner.ToolTip IsNot Nothing AndAlso corner.ToolTip.ToString <> String.Empty Then
+            popComment.DataContext = corner.ToolTip
+            popComment.PlacementTarget = grd
+            popComment.StaysOpen = True
+            popComment.IsOpen = True
+            Task.Delay(500).ContinueWith(Sub()
+                                             Application.Current.Dispatcher.Invoke(Sub()
+                                                                                       popComment.StaysOpen = False
+                                                                                   End Sub)
+                                         End Sub)
+        End If
+    End Sub
 End Class

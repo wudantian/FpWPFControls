@@ -1,22 +1,22 @@
 ﻿Public Class CommentCorner
     Inherits Shape
 
+    Public Shared ReadOnly Property MouseDoubleClickEvent As RoutedEvent = EventManager.RegisterRoutedEvent("MouseDoubleClick", RoutingStrategy.Direct, GetType(RoutedEventHandler), GetType(CommentCorner))
+
+    Public Custom Event MouseDoubleClick As RoutedEventHandler
+        AddHandler(value As RoutedEventHandler)
+            Me.AddHandler(MouseDoubleClickEvent, value)
+        End AddHandler
+        RemoveHandler(value As RoutedEventHandler)
+            Me.RemoveHandler(MouseDoubleClickEvent, value)
+        End RemoveHandler
+        RaiseEvent(sender As Object, e As RoutedEventArgs)
+
+        End RaiseEvent
+    End Event
+
     Protected Overrides ReadOnly Property DefiningGeometry As Geometry
         Get
-            '            StreamGeometry Geometry = New StreamGeometry();
-            'Using (StreamGeometryContext c = geometry.Open())
-            '{
-            'c.BeginFigure(New Point(200, 200), True, True);
-            'c.LineTo(New Point(175, 50), True, True);
-            'From the Library of Lee Bogdanoff
-            'Download at WoweBook.Com
-            'ptg
-            '18 CHAPTER 2 The Diverse Visual Class Structure
-            'c.ArcTo(New Point(50, 150), New Size(1, 1), 0, True,
-            'SweepDirection.Counterclockwise, True, True);
-            'c.LineTo(New Point(200, 200), True, True);
-            '}
-            'Return Geometry;
             Dim geometry = New StreamGeometry
             geometry.FillRule = FillRule.EvenOdd
 
@@ -31,4 +31,13 @@
             Return geometry
         End Get
     End Property
+
+    Private Sub OnMouseDoubleClick()
+        Dim args = New RoutedEventArgs(MouseDoubleClickEvent, Me)
+        [RaiseEvent](args)
+    End Sub
+
+    Private Sub CommentCorner_MouseLeftButtonDown(sender As Object, e As MouseButtonEventArgs) Handles Me.MouseLeftButtonDown
+        OnMouseDoubleClick()
+    End Sub
 End Class
